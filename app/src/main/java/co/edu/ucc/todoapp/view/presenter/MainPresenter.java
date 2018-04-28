@@ -41,6 +41,22 @@ public class MainPresenter implements IMainPresenter {
         }
     }
 
+    @Override
+    public void addTask(String name, String date) {
+        try {
+            Task task = new Task();
+            task.setName(name);
+            task.setDone(false);
+            task.setDate(date);
+
+            addTaskUseCase.setTask(task);
+            addTaskUseCase.execute(new TaskObserver());
+
+        } catch (Exception e) {
+            view.showError(e.getMessage());
+        }
+    }
+
     private class TaskObserver extends DisposableObserver<Boolean> {
 
         @Override

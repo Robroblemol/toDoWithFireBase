@@ -9,7 +9,16 @@ public class Task {
     private String id;
     private String name;
     private String uriImage;
+    private  String date;
     private boolean done;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public boolean isDone() {
         return done;

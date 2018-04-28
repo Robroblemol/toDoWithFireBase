@@ -1,5 +1,7 @@
 package co.edu.ucc.todoapp.view.activities;
 
+import android.view.View;
+
 import java.util.List;
 
 import co.edu.ucc.todoapp.view.viewmodels.TaskViewModel;

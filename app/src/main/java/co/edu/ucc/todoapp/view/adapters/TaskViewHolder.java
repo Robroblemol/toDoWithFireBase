@@ -22,6 +22,9 @@ public class TaskViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.chkDone)
     CheckBox chkDone;
 
+    @BindView(R.id.textDate)
+    TextView textDate;
+
     public TaskViewHolder(View itemView) {
         super(itemView);
 
@@ -29,6 +32,8 @@ public class TaskViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void render(TaskViewModel taskViewModel) {
+
         lblTask.setText(taskViewModel.getName());
+        textDate.setText(taskViewModel.getDate());
     }
 }

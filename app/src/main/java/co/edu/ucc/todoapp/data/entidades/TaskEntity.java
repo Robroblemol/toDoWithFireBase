@@ -2,6 +2,7 @@ package co.edu.ucc.todoapp.data.entidades;
 
 public class TaskEntity {
 
+    private  String date;
     private String description;
     private boolean done;
 
@@ -16,6 +17,10 @@ public class TaskEntity {
     public String getDescription() {
         return description;
     }
+
+    public  void setDate(String date){this.date=date;}
+
+    public String getDate(){return date;}
 
     public void setDescription(String description) {
         this.description = description;

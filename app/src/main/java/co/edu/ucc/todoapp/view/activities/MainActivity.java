@@ -1,12 +1,20 @@
 package co.edu.ucc.todoapp.view.activities;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.List;
 
@@ -29,8 +37,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements IMainView {
 
-    @BindView(R.id.txtDescTask)
-    EditText txtDescTask;
+   // @BindView(R.id.ediTextDescrip)
+   // EditText txtDescTask;
+
 
     @BindView(R.id.rvTask)
     RecyclerView rvTask;
@@ -94,8 +103,32 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @OnClick(R.id.fbAddTask)
     @Override
     public void addTask() {
-        String descTask = txtDescTask.getText().toString();
-        presenter.addTask(descTask);
+
+        boolean wrapInScrollView = false;
+        new MaterialDialog.Builder(this)
+                .title(R.string.select_date)
+                .customView(R.layout.todo_calendar_layout, wrapInScrollView)
+                .positiveText(R.string.positive)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        View calendarView = dialog.getCustomView();//obtengo la vista del activity
+
+                        DatePicker dp = calendarView.findViewById(R.id.datePicker);
+                        int yyyy = dp.getYear();
+                        int mm = dp.getMonth();
+                        int dd = dp.getDayOfMonth();
+                        EditText editText = calendarView
+                                            .findViewById(R.id.ediTextDescrip);
+                        String s = editText.getText().toString();
+                        presenter.addTask(s,""+yyyy+"-"+mm+"-"+dd);
+
+                    }
+                })
+                .show();
+
+        //String descTask = txtDescTask.getText().toString();
+        //presenter.addTask(descTask);
     }
 
     @Override

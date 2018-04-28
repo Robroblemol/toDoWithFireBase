@@ -7,8 +7,17 @@ package co.edu.ucc.todoapp.view.viewmodels;
 public class TaskViewModel {
 
     private String name;
+    private String date;
     private String uriImage;
     private boolean done;
+
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    public String getDate(){
+        return date;
+    }
 
     public boolean isDone() {
         return done;

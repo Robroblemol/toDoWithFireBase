@@ -13,6 +13,7 @@ public class TaskEntityMapper {
 
         taskEntity.setDescription(task.getName());
         taskEntity.setDone(task.isDone());
+        taskEntity.setDate(task.getDate());
 
         return taskEntity;
     }
@@ -33,6 +34,7 @@ public class TaskEntityMapper {
         Task task = new Task();
         task.setName(taskEntity.getDescription());
         task.setDone(taskEntity.isDone());
+        task.setDate(taskEntity.getDate());
         return task;
     }
 
